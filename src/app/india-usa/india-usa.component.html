@@ -18,4 +18,13 @@
    <!--Button to book pacific meals along with id-->
   <button (click)= "pacificMenu(i.id)">Book</button>
 </div>
-<router-outlet></router-outlet>
+ <ul class="user__list" *ngIf="users$ | async as useraa" >
+  <!-- <li class="user" *ngFor="let user of users$ | async">
+      {{ user.first_name }} - {{ user.birth_date }}
+  </li> -->
+  {{useraa.data.first_name}}
+</ul> 
+<app-first></app-first>
+<app-second></app-second>
+<router-outlet name="aside"></router-outlet>
+<router-outlet></router-outlet><app-template>ng serve</app-template>

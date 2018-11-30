@@ -1,0 +1,9 @@
+<span *ngIf = "isavailable;then condition1 else condition2">Condition is valid.</span>
+<div></div>
+<ng-template #condition1>Condition is valid from template</ng-template>
+<ng-template #condition2>Condition is invalid from template</ng-template>
+
+<ng-template
+[ngTemplateOutlet]="condition2">
+</ng-template>
+<ng-content></ng-content>
