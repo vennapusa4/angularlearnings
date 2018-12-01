@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { IndiaUsaComponent } from './india-usa/india-usa.component';
@@ -16,20 +16,28 @@ import { SubjectService } from "./subject.service";
 import { SecondComponent } from './second/second.component';
 import { RouteguardService } from "./routeguard.service";
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeroComponent } from './hero/hero.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { ReactiveformComponent } from './reactiveform/reactiveform.component';
+
 const routes: Routes = [
-  {path: '', redirectTo: 'india-usa', pathMatch: 'full'},
+  { path: '', redirectTo: 'india-usa', pathMatch: 'full' },
   {
     path: 'side',
     outlet: 'aside',
     component: SidebarComponent
-},
-  {path: 'sidebar', component:SidebarComponent, pathMatch: 'full'},
-  {path: 'india-usa',canActivate: [RouteguardService], component: IndiaUsaComponent,resolve: { message: ResolverService }, children: [
-    {path: 'atlantic', component: AtlanticComponent},
-      {path: 'atlantic/:id', component: MealComponentComponent},
-    {path: 'pacific', component: PacificComponent},
-    {path: 'pacific/:id', component: MealComponentComponent}
-  ]}
+  },
+  { path: 'sidebar', component: SidebarComponent, pathMatch: 'full' },
+  { path: 'form', component: HeroComponent },
+  { path: 'reactiveform', component: ReactiveformComponent },
+  {
+    path: 'india-usa', canActivate: [RouteguardService], component: IndiaUsaComponent, resolve: { message: ResolverService }, children: [
+      { path: 'atlantic', component: AtlanticComponent },
+      { path: 'atlantic/:id', component: MealComponentComponent },
+      { path: 'pacific', component: PacificComponent },
+      { path: 'pacific/:id', component: MealComponentComponent }
+    ]
+  }
 ];
 
 @NgModule({
@@ -43,14 +51,19 @@ const routes: Routes = [
     TemplateComponent,
     FirstComponent,
     SecondComponent,
-    SidebarComponent
+    SidebarComponent,
+    HeroComponent,
+    ReactiveformComponent,
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ResolverService,HttpClientService,SubjectService,RouteguardService],
+  providers: [ResolverService, HttpClientService, SubjectService, RouteguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
