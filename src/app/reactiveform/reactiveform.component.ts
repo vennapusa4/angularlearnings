@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators, FormBuilder,FormArray } from '@angular/forms';
-
+import { ValidateUrl } from '../functions/urlvalidater';
 @Component({
   selector: 'app-reactiveform',
   templateUrl: './reactiveform.component.html',
@@ -19,7 +19,7 @@ export class ReactiveformComponent implements OnInit {
   //   })
   // });
   profileForm = this.fb.group({
-    firstName: ['', Validators.required],
+    firstName: ['',[Validators.required, ValidateUrl]],
     lastName: [''],
     address: this.fb.group({
       street: [''],
